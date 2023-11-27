@@ -1,0 +1,7 @@
+{
+  "name": "it4young",
+  "displayName": "it4young",
+  "packagerOpts": {
+    "config": "metro.config.js"
+  }
+}
