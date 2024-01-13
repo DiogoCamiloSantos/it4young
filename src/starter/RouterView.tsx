@@ -1,6 +1,6 @@
 import { forwardRef, useRef, useImperativeHandle, useState } from "react";
 import { View, useWindowDimensions } from "react-native";
-import { SceneMap, TabView } from "react-native-tab-view";
+import { TabView } from "react-native-tab-view";
 import Footer from "../components/Footer/Footer";
 import { TabPageEnum } from "../domain/enums/tab-page.enum";
 import ChatPage from "../pages/Chat";
@@ -24,7 +24,6 @@ const RouterViewStyle = styled.View`
 
 const TabNavigationView = forwardRef((props, ref) => {
     const layout = useWindowDimensions();
-    const tabRef = useRef(null);
     const [index, setIndex] = useState(0);
     const [routes] = useState([
         { key: String(TabPageEnum.Levels) },
@@ -34,29 +33,27 @@ const TabNavigationView = forwardRef((props, ref) => {
         { key: String(TabPageEnum.Profile) },
     ]);
 
-    const renderScene = SceneMap({
-        [TabPageEnum.Levels]: LevelsPage,
-        [TabPageEnum.Researchs]: ResearchsPage,
-        [TabPageEnum.Home]: HomePage,
-        [TabPageEnum.Chat]: ChatPage,
-        [TabPageEnum.Profile]: ProfilePage,
-      });
-
-    // const jumpToTab = (tabIndex:number) => {
-    //     console.log(tabIndex);
-    //     if (tabRef.current) {
-            
-    //       tabRef.current?.jumpToIndex(tabIndex);
-    //     }
-    //   };
-
     return <>
         <Nav />
-        <TabView
-            lazy={true}
+        <TabView 
             renderTabBar={() => null}
             navigationState={{ index, routes }}
-            renderScene={renderScene}
+            renderScene={({ route }) => {
+                switch (route.key) {
+                    case String(TabPageEnum.Levels):
+                        return index === TabPageEnum.Levels ? <LevelsPage /> : null;
+                    case String(TabPageEnum.Researchs):
+                        return index === TabPageEnum.Researchs ? <ResearchsPage /> : null;
+                    case String(TabPageEnum.Home):
+                        return index === TabPageEnum.Home ? <HomePage /> : null;
+                    case String(TabPageEnum.Chat):
+                        return index === TabPageEnum.Chat ? <ChatPage /> : null;
+                    case String(TabPageEnum.Profile):
+                        return index === TabPageEnum.Profile ? <ProfilePage /> : null;
+                    default:
+                        return null;
+                }
+            }}
             onIndexChange={setIndex}
             initialLayout={{ width: layout.width }}
         />

@@ -1,10 +1,11 @@
+import { useState } from "react";
 import { Button, View } from "react-native";
-import Card from "../components/Card/Card";
 import { useDispatch } from 'react-redux';
 import darkTheme from "../common/theme/dark-theme";
-import { useState } from "react";
 import lightTheme from "../common/theme/light-theme";
-import { useSelector } from "react-redux";
+import Card from "../components/Card/Card";
+import Score from "../components/Score/Score";
+import ScoreService from "../core/service/Score/Score.service";
 
 export default function HomePage() {
     console.log('View - 3');
@@ -15,17 +16,25 @@ export default function HomePage() {
 
     const toggleTheme = () => {
         setTheme((theme == 'light') ? 'dark' : 'light');
-        dispatch({ type: 'TOGGLE_THEME', payload: (theme == 'light' ? lightTheme : darkTheme) });
-
- 
-        
+        dispatch({ type: 'TOGGLE_THEME', payload: (theme == 'light' ? lightTheme : darkTheme) });        
     };
+
+    const list = ScoreService.getAll();
+
+    // const progressData = [
+    //     { progress: 20 },
+    //     { progress: 50 },
+    //     { progress: 80 },
+    //   ];
+      
 
     return <View>
         <Card height={100}>
             <Button title="Trocar Tema" onPress={toggleTheme}></Button>
         </Card>
-        <Card height={100} />
+        <Card>
+            <Score list={list} />
+        </Card>
         <Card height={100} />
     </View>
 }

@@ -1,9 +1,8 @@
-import styled, { ThemeProvider } from "styled-components/native";
-import DefaultTheme, { useThemeSelector } from "../../common/theme/default-theme";
+import { Platform } from "react-native";
+import styled from "styled-components/native";
 import TabItem from "./Itens/TabItem";
-import IDefaultLayoutSettings from "../../domain/interfaces/IDefaultLayoutSettings.interface";
 
-const FooterStyle = styled.View<IDefaultLayoutSettings>`
+const FooterStyle = styled.View`
     height: 70px;
     width: 100%;
     border-top-right-radius: 36px;
@@ -14,6 +13,19 @@ const FooterStyle = styled.View<IDefaultLayoutSettings>`
     justify-content: space-between;
     align-content: center;
     padding: 6px 24px;
+
+    ${Platform.select({
+        ios: `
+            shadow-color: #000;
+            shadow-offset: 0px 2px;
+            shadow-opacity: 0.1;
+            shadow-radius: 4px;
+        `,
+        android: `
+            elevation: 20;
+        `,
+    })}
+
 `
 
 export default function Footer(props: IFooter) {

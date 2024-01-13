@@ -4,7 +4,7 @@ import styled from "styled-components/native";
 import { useThemeSelector } from "../../common/theme/default-theme";
 
 interface ICardStyleProps {
-    height: number;
+    height?: number;
     theme: any;
 }
 
@@ -23,7 +23,7 @@ let CardStyle = styled.View<ICardStyleProps>`
             shadow-radius: 4px;
         `,
         android: `
-            elevation: 2;
+            elevation: 2.5;
         `,
     })}
 `;
@@ -37,6 +37,6 @@ export default function Card({ height, children }: ICardProps) {
 }
 
 interface ICardProps {
-    height: number;
+    height?: number;
     children?: ReactNode;
 }

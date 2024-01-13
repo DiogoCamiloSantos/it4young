@@ -4,6 +4,7 @@ import styled from "styled-components/native";
 import DefaultTheme from "../../common/theme/default-theme";
 import Badge from "../Badge/Badge";
 import Label from "../Label/Label";
+import { Platform } from "react-native";
 
 const NavStyle = styled.View`
   width: 100%;
@@ -16,6 +17,18 @@ const NavStyle = styled.View`
   padding: 0 20px;
   border-bottom-left-radius: 20px ;
   border-bottom-right-radius: 20px ;
+
+  ${Platform.select({
+        ios: `
+            shadow-color: #000;
+            shadow-offset: 0px 2px;
+            shadow-opacity: 0.1;
+            shadow-radius: 4px;
+        `,
+        android: `
+            elevation: 10;
+        `,
+    })}
 `
 
 const NameStyle = styled(Label)`
