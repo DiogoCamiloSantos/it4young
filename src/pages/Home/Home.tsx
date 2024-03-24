@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Button, View } from "react-native";
 import { useDispatch } from 'react-redux';
-import darkTheme from "../common/theme/dark-theme";
-import lightTheme from "../common/theme/light-theme";
-import Card from "../components/Card/Card";
-import Score from "../components/Score/Score";
-import ScoreService from "../core/service/Score/Score.service";
+import darkTheme from "../../common/theme/dark-theme";
+import lightTheme from "../../common/theme/light-theme";
+import Card from "../../components/Card/Card";
+import Score from "../../components/Score/Score";
+import ScoreService from "../../core/service/Score/Score.service";
 
 export default function HomePage() {
     console.log('View - 3');
@@ -19,14 +19,7 @@ export default function HomePage() {
         dispatch({ type: 'TOGGLE_THEME', payload: (theme == 'light' ? lightTheme : darkTheme) });        
     };
 
-    const list = ScoreService.getAll();
-
-    // const progressData = [
-    //     { progress: 20 },
-    //     { progress: 50 },
-    //     { progress: 80 },
-    //   ];
-      
+    const list = ScoreService.getAll();      
 
     return <View>
         <Card height={100}>

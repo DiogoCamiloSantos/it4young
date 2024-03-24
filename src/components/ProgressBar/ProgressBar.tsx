@@ -20,7 +20,7 @@ const ProgressFillStyle = styled.View<{progress: any}>`
 const ProgressBar = ({ progress }: any) => {
     return (
         <ProgressBarContainerStyle>
-            <ProgressFillStyle progress={progress} />
+          <ProgressFillStyle progress={progress} />
         </ProgressBarContainerStyle>
     );
 };

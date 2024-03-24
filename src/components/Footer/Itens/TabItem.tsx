@@ -1,6 +1,6 @@
 import { View } from "react-native";
 import { SvgCssUri } from 'react-native-svg';
-import styled, { ThemeProvider } from "styled-components/native";
+import styled from "styled-components/native";
 import { useThemeSelector } from "../../../common/theme/default-theme";
 import IDefaultLayoutSettings from "../../../domain/interfaces/IDefaultLayoutSettings.interface";
 import Label from "../../Label/Label";
@@ -15,7 +15,7 @@ const TabItemStyle = styled.View<IDefaultLayoutSettings>`
     align-items: center;
 `
 const WrapperStyle = styled.View<ITabItemWrapperStyleProps>`
-    background-color: ${props => props.activated ? props.theme.color.background : 'transparent'} ;
+    background-color: 'transparent';
     height: ${defaultTabItemDimensions};
     width:  ${defaultTabItemDimensions};
     border-radius: 25px;

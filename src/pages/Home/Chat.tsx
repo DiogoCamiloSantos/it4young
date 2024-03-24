@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import Card from "../components/Card/Card";
+import Card from "../../components/Card/Card";
 
 export default function ChatPage() {
     console.log('View - 4');

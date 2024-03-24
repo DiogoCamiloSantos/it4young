@@ -1,5 +1,5 @@
 import { ScrollView, View } from "react-native";
-import Card from "../components/Card/Card";
+import Card from "../../components/Card/Card";
 import styled from "styled-components/native";
 
 
