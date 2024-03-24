@@ -1,7 +1,13 @@
 import styled from "styled-components/native";
 
-const Label = styled.Text`
-    font-family: 'Comfortaa-Bold';
-    color: ${props => props.theme.color.font};
+interface ILabelStyleProps {
+    size?: number;
+    color?: string;
+}
+
+const Label = styled.Text<ILabelStyleProps>`
+    font-family: 'Comfortaa-Regular';
+    ${props => props.size && 'font-size: ' + props.size + 'px;' };
+    color: ${props => (props.color || props.theme.color.font)};
 `
 export default Label; 

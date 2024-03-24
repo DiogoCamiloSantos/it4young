@@ -11,6 +11,7 @@ import ResearchsPage from "../pages/Home/Researchs";
 import styled, { ThemeProvider } from "styled-components/native";
 import { useThemeSelector } from "../common/theme/default-theme";
 import Nav from "../components/Nav/Nav";
+import LoginPage from "../pages/Login/Login";
 
 const RouterViewStyle = styled.View`
     background-color: ${props => props.theme.color.background};
@@ -18,7 +19,6 @@ const RouterViewStyle = styled.View`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* flex-wrap: nowrap; */
     overflow-y: hidden;
 `
 
@@ -67,9 +67,7 @@ export default function RouterView() {
 
     return (
         <ThemeProvider theme={theme}>
-            <RouterViewStyle>
-                <TabNavigationView />
-            </RouterViewStyle>
+            <LoginPage />
         </ThemeProvider>
     )
 }
