@@ -19,14 +19,9 @@ export default function HomePage() {
         dispatch({ type: 'TOGGLE_THEME', payload: (theme == 'light' ? lightTheme : darkTheme) });        
     };
 
-    const list = ScoreService.getAll();      
-
     return <View>
         <Card height={100}>
             <Button title="Trocar Tema" onPress={toggleTheme}></Button>
-        </Card>
-        <Card>
-            <Score list={list} />
         </Card>
         <Card height={100} />
     </View>

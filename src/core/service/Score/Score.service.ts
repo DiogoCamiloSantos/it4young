@@ -11,7 +11,7 @@ class ScoreService extends SingletonService {
         const mockUserScores: UserScore[] = [
             { description: 'Score 1', level: 20 },
             { description: 'Score 2', level: 50 },
-            { description: 'Score 3', level: 80 },
+            { description: 'Score 4', level: 80 },
             // Adicione mais objetos conforme necessário
         ];
 

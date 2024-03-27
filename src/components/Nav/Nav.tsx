@@ -1,20 +1,19 @@
 import { useEffect } from "react";
+import { Platform } from "react-native";
 import { useSelector } from "react-redux";
 import styled from "styled-components/native";
-import DefaultTheme from "../../common/theme/default-theme";
 import Badge from "../Badge/Badge";
 import Label from "../Label/Label";
-import { Platform } from "react-native";
 
 const NavStyle = styled.View`
   width: 100%;
   background-color: ${props => props.theme.color.primary};
-  height: 60px;
+  height: 100px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
+  align-items: flex-end;
+  padding: 20px 20px;
   border-bottom-left-radius: 20px ;
   border-bottom-right-radius: 20px ;
 

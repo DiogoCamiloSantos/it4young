@@ -6,7 +6,10 @@ import IDefaultLayoutSettings from "../../../domain/interfaces/IDefaultLayoutSet
 import Label from "../../Label/Label";
 
 const resolveAssetSource = require('react-native/Libraries/Image/resolveAssetSource');
+const bar = resolveAssetSource(require('../../../../assets/icons/bar.svg')).uri;
+
 const defaultTabItemDimensions = '36px';
+
 
 const TabItemStyle = styled.View<IDefaultLayoutSettings>`
     background-color: ${props => props.theme.color.primary};

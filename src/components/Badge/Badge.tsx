@@ -14,9 +14,6 @@ const DescriptionStyle = styled(Label)`
 `;
 
 export default function Badge({ text }: any) {
-    
-
-    
     return (
         <BadgeStyle>
             <DescriptionStyle>{text}</DescriptionStyle>

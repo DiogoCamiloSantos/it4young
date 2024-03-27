@@ -1,17 +1,58 @@
+import type { PropsWithChildren } from 'react';
 import React from 'react';
+import type { ViewStyle } from 'react-native';
+import { Animated, Easing, View } from 'react-native';
+import { SvgCssUri } from 'react-native-svg';
 import styled from 'styled-components/native';
-import { ActivityIndicator } from 'react-native';
 
-const Container = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
+type SpinnerViewStyle = PropsWithChildren<{
+    style?: ViewStyle,
+    duration?: number,
+    loops?: number,
+    height?: number,
+    width?: number
+}>;
+
+const resolveAssetSource = require('react-native/Libraries/Image/resolveAssetSource');
+const loading = resolveAssetSource(require('../../../assets/icons/loading.svg')).uri;
+
+
+const LoadingImageStyle = styled(SvgCssUri)`
 `;
 
-const LoadingIndicator = () => (
-  <Container>
-    <ActivityIndicator size="large" color="#0000ff" /> 
-  </Container>
-);
+const SpinnerViewStyle: React.FC<SpinnerViewStyle> = (props) => {
+    console.log(`props`, props);
 
-export default LoadingIndicator;
+    const spinValue = new Animated.Value(0);
+
+    Animated.timing(
+        spinValue,
+        {
+            toValue: props.loops || 3,
+            duration: props.duration || 3000,
+            easing: Easing.linear,
+            useNativeDriver: true
+        }
+    ).start()
+
+    const spin = spinValue.interpolate({
+        inputRange: [0, 1],
+        outputRange: ['0deg', '360deg']
+    });    
+
+    return (
+        <Animated.View
+            style={{
+                transform: [{ rotate: spin }]
+            }}>
+            {props.children}
+            <LoadingImageStyle uri={loading} style={props.style} height={props.height || 40} width={props.width || 40} />
+        </Animated.View>
+    );
+};
+
+
+export default (props: SpinnerViewStyle) => {
+    return <SpinnerViewStyle {...props} />;
+};
+

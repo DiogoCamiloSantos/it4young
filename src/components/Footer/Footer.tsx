@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import TabItem from "./Itens/TabItem";
 
 const FooterStyle = styled.View`
-    height: 70px;
+    height: 80px;
     width: 100%;
     border-top-right-radius: 36px;
     border-top-left-radius: 36px;

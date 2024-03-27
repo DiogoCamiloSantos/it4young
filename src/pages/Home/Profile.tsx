@@ -1,23 +1,32 @@
 import { ScrollView, View } from "react-native";
 import Card from "../../components/Card/Card";
 import styled from "styled-components/native";
-
-
-const ScrollViewStyle = styled(ScrollView)`
-       
-
-`
+import Button from "../../components/Button/Button";
+import Label from "../../components/Label/Label";
+import { useDispatch } from "react-redux";
 
 export default function ProfilePage() {
     console.log('View - 5');
 
+    const dispatch = useDispatch();
+
+    const logout = () => {
+        dispatch({ type: "TOGGLE_AUTHENTICATION", payload: null });
+    }
+
     return <ScrollViewStyle >
-        <Card height={100} />
-        <Card height={100} />
-        <Card height={100} />
-        <Card height={100} />
-        <Card height={100} />
-        <Card height={100} />
-        <Card height={100} />
+        <Card>
+            <ButtonStyle onPress={logout}>
+                <Label color="white">SAIR</Label>
+            </ButtonStyle>
+        </Card>
     </ScrollViewStyle >
 }
+
+const ScrollViewStyle = styled(ScrollView)`
+`
+
+
+const ButtonStyle = styled(Button)`
+    background-color: #E34D8C;
+`

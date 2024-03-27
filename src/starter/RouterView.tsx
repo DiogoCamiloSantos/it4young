@@ -1,17 +1,20 @@
-import { forwardRef, useRef, useImperativeHandle, useState } from "react";
+import { forwardRef, useState } from "react";
 import { View, useWindowDimensions } from "react-native";
 import { TabView } from "react-native-tab-view";
+import styled, { ThemeProvider } from "styled-components/native";
+import { useThemeSelector } from "../common/theme/default-theme";
 import Footer from "../components/Footer/Footer";
+import Nav from "../components/Nav/Nav";
 import { TabPageEnum } from "../domain/enums/tab-page.enum";
 import ChatPage from "../pages/Home/Chat";
 import HomePage from "../pages/Home/Home";
 import LevelsPage from "../pages/Home/Levels";
 import ProfilePage from "../pages/Home/Profile";
 import ResearchsPage from "../pages/Home/Researchs";
-import styled, { ThemeProvider } from "styled-components/native";
-import { useThemeSelector } from "../common/theme/default-theme";
-import Nav from "../components/Nav/Nav";
 import LoginPage from "../pages/Login/Login";
+import { useAuthenticationSelector } from "../redux/reducer/Authentication/authentication-selector";
+import BackgroundImageContainer from "../components/BackgroundImage/BackgroundImageContainer";
+import Loading from "../components/Loading/Loading";
 
 const RouterViewStyle = styled.View`
     background-color: ${props => props.theme.color.background};
@@ -64,10 +67,33 @@ const TabNavigationView = forwardRef((props, ref) => {
 
 export default function RouterView() {
     const theme = useThemeSelector();
+    const authentication = useAuthenticationSelector();
+
+    const [enable, setEnable] = useState(false);
+
+    console.log(`teste`, authentication);
+
+    setTimeout(()=> {
+        setEnable(true);
+    }, 10000);
+   
 
     return (
         <ThemeProvider theme={theme}>
-            <LoginPage />
+            {!authentication && <LoginPage />}
+            {(authentication && enable)
+                ? <RouterViewStyle>
+                    <TabNavigationView />
+                </RouterViewStyle>
+                : <BackgroundImageContainer style> 
+                    <View style={{paddingTop: 50}}>
+                        <Loading duration={10000} loops={7} height={80} width={80} />
+                    </View>
+                </BackgroundImageContainer>
+            }
         </ThemeProvider>
     )
 }
+
+const LoadingStyle = styled(Loading)`
+`
